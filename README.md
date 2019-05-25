@@ -57,6 +57,28 @@ $dynamic_css = new SeoThemes\DynamicStylesheet\Loader( prefix_custom_css(), 'my-
 $dynamic_css->run();
 ```
 
+## Testing
+
+__Customizer Settings__
+
+To test that the Customizer settings are working correctly, add the following code snippet:
+
+```php
+add_action( 'customize_register', function ( $wp_customize ) {
+	$wp_customize->add_setting( 'custom-color', [
+		'type' => 'option',
+	] );
+
+	$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'custom-color', [
+		'label'    => 'Custom Color',
+		'section'  => 'colors',
+		'settings' => 'custom-color',
+	] ) );
+} );
+```
+
+This will add a simple color control under the Colors section of the Customizer. If changes are not applied, try clearing the browser cache.
+
 
 
 
