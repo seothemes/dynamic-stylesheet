@@ -22,7 +22,7 @@ Copy the `loader.php` file somewhere in your theme or plugin and then include it
 
 ```php
 // Include loader class (not required if using composer).
-require_once __DIR__ 'path/to/loader.php';
+require_once __DIR__ . 'path/to/loader.php';
 ```
 
 ## Usage
