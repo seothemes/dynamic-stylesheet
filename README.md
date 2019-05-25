@@ -27,10 +27,10 @@ require_once __DIR__ . 'path/to/loader.php';
 
 ## Usage
 
-Pass a string of custom CSS to the Loader class parameters and then load the hooks using the `run` method. It is recommended to generate your CSS inside a function that is also hooked to `wp_enqueue_scripts` to enable live preview in the Customizer. The stylesheet handle and option name can also be specified when initializing the Loader class using the $handle parameter:
+Pass a string of custom CSS to the Loader class parameters and then load the hooks using the `run` method. It is recommended to generate your CSS inside a function that is also hooked to `wp_enqueue_scripts` to enable live preview in the Customizer. The stylesheet handle and option name can also be specified when initializing the Loader class with the second parameter:
 
 ```php
-add_action( 'wp_enqueue_scripts', 'prefix_custom_css', 15, 1 );
+add_action( 'wp_enqueue_scripts', 'prefix_custom_css', 15 );
 /**
  * Generate custom CSS and add inline styles to Customizer preview.
  *
