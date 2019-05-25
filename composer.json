@@ -1,0 +1,23 @@
+{
+  "name": "seothemes/dynamic-stylesheet",
+  "description": "Simple drop-in class for generating dynamic stylesheets in WordPress themes or plugins.",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "seothemes",
+      "email": "seothemeswp@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "classmap": [
+      "loader.php"
+    ],
+    "files": [
+      "vendor/aristath/kirki/kirki.php"
+    ]
+  }
+}
