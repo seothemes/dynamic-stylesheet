@@ -27,25 +27,36 @@ require_once __DIR__ . 'path/to/loader.php';
 
 ## Usage
 
-Pass a string of custom CSS to the Loader class parameters and then load the hooks using the `run` method:
+Pass a string of custom CSS to the Loader class parameters and then load the hooks using the `run` method. It is recommended to generate your CSS inside a function that is also hooked to `wp_enqueue_scripts` to enable live preview in the Customizer. The stylesheet handle and option name can also be specified when initializing the Loader class using the $handle parameter:
 
 ```php
-// My custom CSS to generate.
-$custom_color = get_option( 'custom-color', '#eee' );
-$custom_css   = 'body { background-color: ' . $custom_color . ' !important; }';
+add_action( 'wp_enqueue_scripts', 'prefix_custom_css', 15, 1 );
+/**
+ * Generate custom CSS and add inline styles to Customizer preview.
+ *
+ * @since 1.0.0
+ *
+ * @return string
+ */
+function prefix_custom_css() {
+	$custom_color = get_option( 'custom-color', '#eee' );
+  
+	$custom_css   = 'body { background-color: ' . $custom_color . ' !important; }';
+
+	if ( is_customize_preview() ) {
+		wp_add_inline_style('dynamic', $custom_css);
+	}
+
+	return $custom_css;
+}
 
 // Initialize Loader class (pass custom CSS as parameter here).
-$dynamic_css = new SeoThemes\DynamicStylesheet\Loader( $custom_css );
+$dynamic_css = new SeoThemes\DynamicStylesheet\Loader( prefix_custom_css(), 'my-prefix' );
 
 // Load hooks.
 $dynamic_css->run();
 ```
 
-You can also change the stylesheet handle and option name when initializing the Loader class using the $handle parameter:
-
-```php
-$dynamic_css = new SeoThemes\DynamicStylesheet\Loader( $custom_css, 'my-prefix' );
-```
 
 
 
