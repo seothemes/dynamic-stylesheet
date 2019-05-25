@@ -15,7 +15,7 @@ Copy the `loader.php` file somewhere in your theme or plugin and then add the fo
 require_once __DIR__ 'path/to/loader.php';
 
 // My custom CSS to generate.
-$custom_color = 'red'
+$custom_color = get_option( 'custom-color', '#eee' );
 $custom_css   = 'body { background-color: ' . $custom_color . ' !important; }';
 
 // Initialize dynamic stylesheet.
