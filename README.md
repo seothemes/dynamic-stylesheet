@@ -8,7 +8,7 @@ This class will try to write the custom CSS to a static file in the `wp-content/
 
 ## Installation
 
-* Composer (recommended) *
+__Composer (recommended)__
 
 Run the following command from the root directory of your theme or plugin:
 
@@ -16,7 +16,7 @@ Run the following command from the root directory of your theme or plugin:
 composer require seothemes/dynamic-stylesheet
 ```
 
-* Manual *
+__Manual__
 
 Copy the `loader.php` file somewhere in your theme or plugin and then include it using `require_once`, e.g:
 
