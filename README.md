@@ -21,6 +21,6 @@ $custom_css   = 'body { background-color: ' . $custom_color . ' !important; }';
 // Initialize dynamic stylesheet.
 $dynamic_css = new SeoThemes\DynamicStylesheet\Loader( $custom_css );
 
-// Run hooks.
+// Load hooks.
 $dynamic_css->run();
 ```
