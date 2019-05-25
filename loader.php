@@ -66,7 +66,7 @@ class Loader {
 	public function run() {
 		if ( $this->cache !== $this->css ) {
 			update_option( $this->handle . '-css', $this->css );
-			add_action( 'init', [ $this, 'write_to_file' ] );
+			add_action( 'after_setup_theme', [ $this, 'write_to_file' ] );
 		}
 
 		if ( ! file_exists( $this->file ) ) {
@@ -85,22 +85,14 @@ class Loader {
 	 * @return void
 	 */
 	public function load_stylesheet() {
-		if ( is_customize_preview() ) {
-			wp_add_inline_style( $this->handle, $this->css );
-			$file = false;
-
-		} elseif ( file_exists( $this->file ) ) {
-			$file = content_url( '/cache/' . $this->handle . '.css' );
-
-		} else {
-			$file = admin_url( 'admin-ajax.php' ) . '?action=dynamic_css&wpnonce=' . wp_create_nonce( $this->handle . '-nonce' );
-		}
+		$static  = content_url( '/cache/' . $this->handle . '.css' );
+		$dynamic = admin_url( 'admin-ajax.php' ) . '?action=dynamic_css&wpnonce=' . wp_create_nonce( $this->handle . '-nonce' );
 
 		wp_register_style(
 			$this->handle,
-			$file,
+			file_exists( $this->file ) ? $static : $dynamic,
 			[],
-			defined( 'WP_DEBUG' ) && WP_DEBUG ? filemtime( $this->file ) : false,
+			defined( 'WP_DEBUG' ) && WP_DEBUG ? filemtime( $this->file ) : '',
 			'all'
 		);
 
