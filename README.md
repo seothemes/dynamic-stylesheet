@@ -44,7 +44,7 @@ function prefix_custom_css() {
 	$custom_css   = 'body { background-color: ' . $custom_color . ' !important; }';
 
 	if ( is_customize_preview() ) {
-		wp_add_inline_style('dynamic', $custom_css);
+		wp_add_inline_style( 'my-prefix', $custom_css );
 	}
 
 	return $custom_css;
